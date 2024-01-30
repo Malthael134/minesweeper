@@ -1,0 +1,98 @@
+body {
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bomb {
+    background-color: #ff000088;
+}
+
+.flag-button {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 5px;
+}
+
+.flag-button:hover {
+    cursor: pointer;
+    background-color: #999999;
+}
+
+.flag-button.active {
+    background-color: #009900;
+}
+
+.board {
+    width: 450px;
+    height: 450px;
+    border: 10px solid darkgray;
+    border-radius: 5px;
+    background-color: lightgray;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board div {
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid whitesmoke;
+
+    /** Text **/
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board div.tile-clicked {
+    background-color: darkgray;
+}
+
+.board div.x1 {
+    color: blue;
+}
+
+.board div.x2 {
+    color: green;
+}
+
+.board div.x3 {
+    color: red;
+}
+
+.board div.x4 {
+    color: navy;
+}
+
+.board div.x5 {
+    color: brown;
+}
+
+.board div.x6 {
+    color: teal;
+}
+
+.board div.x7 {
+    color: black;
+}
+
+.board div.x8 {
+    color: gray;
+}
+
