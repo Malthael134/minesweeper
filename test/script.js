@@ -9,22 +9,29 @@ let tilesClicked = 0;
 let flagEnabled = false;
 let gameOver = false;
 
-window.onload = () => {
-    startGame();
+function startGame() {
+    document.getElementById('board').innerHTML = '';
+    document.getElementById('mines-count').innerText = minesCount;
+    board = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+    generateBoard();
     setMines();
 }
 
 function setMines() {
-    minesLocation.push("2-2")
-    minesLocation.push("2-3")
-    minesLocation.push("5-6")
-    minesLocation.push("3-4")
-    minesLocation.push("1-1")
-}
+    let minesPlaced = 0;
+    while (minesPlaced < minesCount) {
+        let r = Math.floor(Math.random() * rows);
+        let c = Math.floor(Math.random() * columns);
+        let id = `${r.toString()}-${c.toString()}`;
 
-function startGame() {
-    document.getElementById('mines-count').innerText = minesCount;
-    generateBoard();
+        if (!minesLocation.includes(id)) {
+            minesLocation.push(id);
+            ++minesPlaced;
+        }
+    }
 }
 
 function generateBoard() {
@@ -52,6 +59,11 @@ function generateTile(row, column) {
 }
 
 function clickTile() {
+    if (gameOver || this.classList.contains('tile-clicked')) {
+        console.log('Game is over');
+        return;
+    }
+
     let tile = this;
 
     if (gameOver) return;
@@ -62,9 +74,10 @@ function clickTile() {
     }
 
     if (minesLocation.includes(tile.id)) {
-        revealMines();
-        // alert('Game Over');
         gameOver = true;
+        revealMines();
+        return;
+        // alert('Game Over');
     }
 
     let coords = tile.id.split('-');
@@ -76,11 +89,14 @@ function clickTile() {
 }
 
 function revealMines() {
-    for (let i = 0; i < minesLocation.length; ++i) {
-        let bombTile = document.getElementById(minesLocation[i]);
-        bombTile.innerText = "💣";
-        bombTile.classList.add('bomb');
-        
+    for (let r = 0; r < rows; ++r) {
+        for (let c = 0; c < columns; ++c) {
+            let tile = board[r][c];
+            if (minesLocation.includes(tile.id)) {
+                tile.innerText = "💣";
+                tile.classList.add('bomb');
+            }
+        }
     }
     console.log("Revealed Mines");
 }
@@ -120,12 +136,67 @@ function toggleFlagMode() {
 }
 
 function checkMine(r, c) {
+    // Out of bounds
     if (r < 0 || r >= rows || c < 0 || c >= columns) {
         return;
     }
+    if (board[r][c].classList.contains('tile-clicked')) {
+        return;
+    }
+
+    board[r][c].classList.add('tile-clicked');
+    ++tilesClicked;
 
     let minesFound = 0;
 
-    
+    // top 3
+    minesFound += checkTile(r-1, c-1);
+    minesFound += checkTile(r-1, c);
+    minesFound += checkTile(r-1, c+1);
 
+    // left and right
+    minesFound += checkTile(r, c-1);
+    minesFound += checkTile(r, c+1);
+
+    // bottom 3
+    minesFound += checkTile(r+1, c-1);
+    minesFound += checkTile(r+1, c);
+    minesFound += checkTile(r+1, c+1);
+    
+    if (minesFound > 0) {
+        board[r][c].innerText = minesFound;
+        board[r][c].classList.add(`x${minesFound.toString()}`);
+    } else {
+        // top 3
+        checkMine(r-1, c-1);
+        checkMine(r-1, c);
+        checkMine(r-1, c+1);
+
+        // left and right
+        checkMine(r, c-1);
+        checkMine(r, c+1);
+
+        // bottom 3
+        checkMine(r+1, c-1);
+        checkMine(r+1, c);
+        checkMine(r+1, c+1);
+            
+    }
+
+    if (tilesClicked == rows * columns - minesCount) {
+        document.getElementById('mines-count').innerText = 'Cleared!';
+        gameOver = true;
+        revealMines();
+    }
+}
+
+function checkTile(r, c) {
+    // Out of bounds
+    if (r < 0 || r >= rows || c < 0 || c >= columns) {
+        return 0;
+    }
+    if (minesLocation.includes(`${r.toString()}-${c.toString()}`)) {
+        return 1;
+    }
+    return 0;
 }

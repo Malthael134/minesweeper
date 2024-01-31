@@ -17,7 +17,8 @@ body {
     background-color: #ff000088;
 }
 
-.flag-button {
+.button {
+    display: inline-block;
     width: 100px;
     height: 50px;
     font-size: 20px;
@@ -26,12 +27,12 @@ body {
     border-radius: 5px;
 }
 
-.flag-button:hover {
+.button:hover {
     cursor: pointer;
     background-color: #999999;
 }
 
-.flag-button.active {
+.button.active {
     background-color: #009900;
 }
 
