@@ -1,8 +1,5 @@
 <script>
-	import Game from "$lib/Minesweeper/Minesweeper.svelte";
-
+	import Minesweeper from "$lib/Minesweeper/Minesweeper.svelte";
 </script>
 
-<div>
-    <Game />
-</div> 
+<Minesweeper />

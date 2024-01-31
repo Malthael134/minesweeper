@@ -1,9 +1,13 @@
 <main>
-    <slot />
+    <div>
+        <slot />
+    </div>
 </main>
 
 <style>
     main {
-        padding: 5svh 15svw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

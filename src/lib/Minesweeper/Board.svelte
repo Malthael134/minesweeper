@@ -1,20 +1,17 @@
 <script>
 	import { boardSizeStore } from "../../stores";
-	import Tile from "./Tile.svelte";
     
     /** @type {number[]} rows */
-    const rows = Array.from(
+    $: rows = Array.from(
         {length: $boardSizeStore},
         (_, i) => i
     );
     
     /** @type {number[]} columns */
-    const columns = Array.from(
+    $: columns = Array.from(
         {length: $boardSizeStore},
         (_, i) => i
     );
-
-    console.log(rows, columns);
 
 </script>
 
@@ -25,10 +22,13 @@
 >
 {#each rows as row}
     {#each columns as column}
-        <Tile
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div
             class="tile"
             id={`${row.toString()}-${column.toString()}`}
-        />
+            on:click={() => {console.log('Hi')}}
+        ></div>
     {/each}
 {/each}
 </div>
@@ -42,9 +42,8 @@
         border: 10px solid #555;
         border-radius: 10px;
         
-        margin: 0 auto;
-        flex-wrap: wrap;
-        
+        margin: 0;
+
         display: grid;
         row-gap: 0;
         grid-template-rows: var(--board-size);
@@ -52,12 +51,19 @@
 
     }
 
-    .board :global(.tile):nth-child(2n-1) {
+    .board :nth-child(2n-1) {
         background-color: #666;
     }
-    .board :global(.tile):nth-child(2n) {
-        background-color: #999;
+
+    .board :nth-child(2n-1):hover {
+        cursor: pointer;
+        background-color: #777;
+    }
+    .board :nth-child(2n) {
+        background-color: #aaa;
+    }
+    .board :nth-child(2n):hover {
+        cursor: pointer;
+        background-color: #bbb;
     }
 </style>
-
-
