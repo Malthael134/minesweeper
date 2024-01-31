@@ -1,0 +1,39 @@
+name: Github-Pages
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+    - app/**
+    - .github/workflows/docker-image_app.yml
+  pull_request:
+    branches: [ "main" ]
+    paths:
+    - app/**
+    - .github/workflows/docker-image_app.yml
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install Dependencies
+        run: |
+          pnpm install
+      
+      - name: Build
+        run: |
+          pnpm run build
+      
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+
+
+            
