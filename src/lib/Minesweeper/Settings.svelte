@@ -10,21 +10,22 @@
 </script>
 
 
-<label for="boardSize">Difficulty</label>
 <div class="settings-bar">
 
     <div>
+
+        <label for="boardSize">Difficulty</label>
         <select
             name="boardSize"
             id="boardSize"
             bind:value={$boardSizeStore}
         >
 
-            {#each difficulties as difficutly}
-                <option value={difficutly.value}>
-                    {difficutly.name}
-                </option>
-            {/each}
+        {#each difficulties as difficutly}
+            <option value={difficutly.value}>
+                {difficutly.name}
+            </option>
+        {/each}
 
         </select>
     </div>
