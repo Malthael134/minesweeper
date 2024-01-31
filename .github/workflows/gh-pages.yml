@@ -3,14 +3,8 @@ name: Github-Pages
 on:
   push:
     branches: [ "main" ]
-    paths:
-    - app/**
-    - .github/workflows/docker-image_app.yml
   pull_request:
     branches: [ "main" ]
-    paths:
-    - app/**
-    - .github/workflows/docker-image_app.yml
   workflow_dispatch:
 
 permissions:
