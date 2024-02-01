@@ -3,8 +3,8 @@ name: Github-Pages
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
@@ -35,4 +35,4 @@ jobs:
           file: Dockerfile.prod
           platforms: linux/amd64 #, linux/arm64
           push: true
-          tags: ghcr.io/malthael134/minesweeper-svelte/web
+          tags: ghcr.io/malthael134/minesweeper-svelte:latest
