@@ -22,14 +22,14 @@ jobs:
           npm i -g pnpm
           pnpm install
       
-      - name: Build
+      - name: Build and Deploy
         run: |
-          pnpm run build
+          pnpm run deploy:gh-pages
       
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build
+      # - name: Deploy
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     folder: build
 
 
             
