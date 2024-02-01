@@ -10,7 +10,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"deploy:gh-pages": "pnpm build && pnpx gh-pages -d build -t true"
+		"deploy": "pnpm build && pnpm deploy:gh-pages",
+		"deploy:gh-pages": "pnpx gh-pages -d build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
