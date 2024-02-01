@@ -132,6 +132,7 @@ boardSizeStore.subscribe((value) => {
     .board {
         width: 500px;
         height: 500px;
+        background-color: #555;
         border: 10px solid #555;
         border-radius: 10px;
         
