@@ -1,7 +1,9 @@
-//* Number
-export { default as Number } from "./Number.svelte";
+//* Exporting components
+export { default as Progress } from "./Progress.svelte";
 
-//* Special Icons
-export { default as Bomb } from './Bomb.svelte';
-export { default as Flag } from './Flag.svelte';
-export { default as Mine } from './Mine.svelte';
+//* Exporting icons
+export { default as Number } from "./icons/Number.svelte";
+export { default as Flag } from './icons/Flag.svelte';
+export { default as Bomb } from './icons/Bomb.svelte';
+export { default as Burst } from './icons/Burst.svelte';
+

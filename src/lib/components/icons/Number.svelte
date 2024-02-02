@@ -14,6 +14,12 @@ export let color = '#000000';
 
 </script>
 
+<style>
+.number-svg {
+    display: inline-block;
+}
+</style>
+
 <div
     class="number-svg"
 >
@@ -83,10 +89,3 @@ export let color = '#000000';
 <div>Not found!</div>
 {/if}
 </div>
-
-<style>
-.number-svg {
-    display: inline-block;
-}
-</style>
-
