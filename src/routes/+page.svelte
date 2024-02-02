@@ -1,5 +1,5 @@
 <script>
-	import Minesweeper from "$lib/Minesweeper/Minesweeper.svelte";
+	import Minesweeper from "$lib/minesweeper/Minesweeper.svelte";
 </script>
 
 <Minesweeper />

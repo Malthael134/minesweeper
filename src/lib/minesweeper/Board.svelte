@@ -62,6 +62,7 @@ function generateBoard() {
 
 /* Set mines */
 function setMines() {
+    console.log('Setting mines:', $mineCountStore);
     /** @type {number} */
     let minesLeft = $mineCountStore;
 
@@ -80,10 +81,10 @@ function setMines() {
         }
 
     }
-    console.log(mineLocations);
 }
 
 boardSizeStore.subscribe((value) => {
+    console.log('Board size is currently', value);
     startGame();
 });
 
@@ -93,7 +94,8 @@ boardSizeStore.subscribe((value) => {
 <div
     class="board"
     style="
-        --board-size: {`${500/$boardSizeStore}px` + (` ${500/$boardSizeStore}px`.repeat($boardSizeStore-1))}
+        --board-size: {`${500/$boardSizeStore}px` + (` ${500/$boardSizeStore}px`.repeat($boardSizeStore-1))};
+        --tile-size: {`${500/$boardSizeStore}px`};
     "
 >
 
@@ -106,17 +108,14 @@ boardSizeStore.subscribe((value) => {
             id={tile.id}
             on:click={() => {
                 let position = tile.id.split('-');
-                console.log(position)
 
                 const tileElement = document.getElementById(tile.id);
 
                 if (tileElement !== null && !tileElement.classList.contains('clicked')) {
                     ++tilesClicked;
                     tile.class += ' clicked';
-                    console.log(tile.class);
                 }
                 if (mineLocations.includes(tile.id)) {
-                    console.log('BOOM');
 
                 }
             }}
@@ -144,6 +143,11 @@ boardSizeStore.subscribe((value) => {
         grid-template-rows: var(--board-size);
         grid-template-columns: var(--board-size);
 
+    }
+
+    .tile {
+        width: var(--tile-size);
+        height: var(--tile-size);
     }
 
     .board .tile.bomb {
