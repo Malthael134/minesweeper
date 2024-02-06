@@ -1,5 +1,7 @@
 <script>
-	import Minesweeper from "$lib/Minesweeper.svelte";
+    import { Game } from '$lib/index'
 </script>
 
-<Minesweeper />
+<div>
+    <Game />
+</div>

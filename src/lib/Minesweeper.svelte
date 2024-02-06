@@ -1,13 +1,8 @@
 <script>
-    import Board from "./components/Board.svelte";
-	import Settings from "./components/Settings.svelte";
-	import Stats from "./components/Stats.svelte";
+    import {
+        Board,
+    } from '$lib/index'
 
 </script>
 
-<div>
-    <Settings />
-    <Board />
-    <Stats />
-</div>
-
+<Board />
