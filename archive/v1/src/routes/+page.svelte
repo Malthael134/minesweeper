@@ -3,5 +3,9 @@
 </script>
 
 <div>
+
+</div>
+
+<div>
     <Game />
 </div>

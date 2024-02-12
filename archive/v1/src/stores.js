@@ -7,5 +7,5 @@ import {
 export const storeBoardSize = writable(9);
 
 /** @type {import("svelte/store").Writable<number>} */
-export const storeMineCount= writable()
+export const storeMineCount= writable(5)
 
