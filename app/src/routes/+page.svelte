@@ -1,64 +1,52 @@
 <script lang="ts">
-	class Tile {
-		row: Number;
-		column: Number;
-		constructor(r: Number, c: Number) {
-			this.row = r;
-			this.column = c;
-		}
-	}
+	import { Board } from '$lib/classes';
 
-	class Board {
-		tiles: Tile[][];
-		size: Number;
-		mineCount: Number;
-		constructor(size: Number, mineCount: Number) {
-			this.size = size;
-			this.tiles = [];
-			this.mineCount = mineCount;
-		}
+	let boardSize = 9;
+	let boardMineCount = 5;
 
-		public SetSize(size: Number) {
-			this.size = size;
-		}
+	const BOARD_SIZE_EASY = 9;
+	const BOARD_SIZE_NORMAL = 15;
+	const BOARD_SIZE_HARD = 21;
 
-		public SetMineCount(mineCount: Number) {
-			this.mineCount = mineCount;
-		}
-
-		public Start(): void {
-			this.generateMines(this.mineCount);
-			this.generateTiles();
-		}
-
-		private generateMines(mineCount: Number) {
-			console.log(`Danger level: ${mineCount}`);
-		}
-
-		private generateTiles() {}
-	}
-
-    let boardSize = 9;
-    let boardMineCount = 5;
-
-	$: board = new Board(boardSize, boardMineCount);
+	let board = new Board(boardSize, boardMineCount);
 </script>
 
 <button
 	type="button"
 	on:click={() => {
 		board.Start();
+		board = board;
 	}}
 >
 	Start Game
 </button>
 
-<div class="grid grid-cols-{board.size} grid-rows-{board.size}">
+<div>Hi</div>
+
+<div
+	class="grid
+        {
+            board.size === BOARD_SIZE_EASY ? `grid-cols-9 grid-rows-9`  :
+            board.size === BOARD_SIZE_NORMAL ? `grid-cols-15 grid-rows-15` :
+            board.size === BOARD_SIZE_HARD ? `grid-cols-21 grid-rows-21` : ''
+        }
+    "
+>
+	<!-- style="--board-size: {board.size}" -->
 	{#each board.tiles as row}
 		{#each row as tile}
-			<div>
-				{tile.row} | {tile.column}
+			<div class={tile.mine ? 'bg-red-500' : 'bg-green-500'}>
+				{tile.coord.row}-{tile.coord.column}
 			</div>
 		{/each}
 	{/each}
 </div>
+
+<!-- <style lang="postcss">
+    .board {
+        display: grid;
+        grid-template-rows: repeat(var(--board-size), 1fr);
+        grid-template-columns: repeat(var(--board-size), 1fr);
+
+    }
+</style> -->
