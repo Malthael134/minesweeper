@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Board } from '$lib/classes';
+	import { Number } from '$lib/components';
 
 	let boardSize = 9;
 	let boardMineCount = 5;
@@ -11,42 +12,47 @@
 	let board = new Board(boardSize, boardMineCount);
 </script>
 
-<button
-	type="button"
-	on:click={() => {
-		board.Start();
-		board = board;
-	}}
->
-	Start Game
-</button>
-
-<div>Hi</div>
-
 <div
-	class="grid
-        {
-            board.size === BOARD_SIZE_EASY ? `grid-cols-9 grid-rows-9`  :
-            board.size === BOARD_SIZE_NORMAL ? `grid-cols-15 grid-rows-15` :
-            board.size === BOARD_SIZE_HARD ? `grid-cols-21 grid-rows-21` : ''
-        }
-    "
+	class="
+		w-full h-dvh
+		flex flex-col
+		items-center justify-center
+	"
 >
-	<!-- style="--board-size: {board.size}" -->
-	{#each board.tiles as row}
-		{#each row as tile}
-			<div class={tile.mine ? 'bg-red-500' : 'bg-green-500'}>
-				{tile.coord.row}-{tile.coord.column}
-			</div>
+	<div>Hi</div>
+	<div
+		class="
+			grid
+			w-8/12 aspect-square
+			{board.size === BOARD_SIZE_EASY
+			? `grid-cols-9 grid-rows-9`
+			: board.size === BOARD_SIZE_NORMAL
+				? `grid-cols-15 grid-rows-15`
+				: board.size === BOARD_SIZE_HARD
+					? `grid-cols-21 grid-rows-21`
+					: ''}
+		"
+	>
+		<!-- style="--board-size: {board.size}" -->
+		{#each board.tiles as row}
+			{#each row as tile}
+				<div
+					class="
+						aspect-square
+						{tile.mine ? 'bg-red-500' : 'bg-green-500'}
+					"
+				>
+					<span
+						class="
+							w-full h-full
+							flex
+							justify-center items-center
+						"
+					>
+						<Number />
+					</span>
+				</div>
+			{/each}
 		{/each}
-	{/each}
+	</div>
 </div>
-
-<!-- <style lang="postcss">
-    .board {
-        display: grid;
-        grid-template-rows: repeat(var(--board-size), 1fr);
-        grid-template-columns: repeat(var(--board-size), 1fr);
-
-    }
-</style> -->

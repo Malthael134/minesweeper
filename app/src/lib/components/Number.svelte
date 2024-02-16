@@ -1,14 +1,14 @@
 <script lang="ts">
 	export let number: number = 0;
 
-	export let width: string = '50';
+	export let width: string = '50%';
 
-	export let height: string = '50';
+	export let height: string = '50%';
 
 	export let fill: string = '#000000';
 </script>
 
-<div class="number-svg">
+<div>
 	{#if number < 0 || number > 9}
 		<div>Number out of bounds!</div>
 	{:else if number === 0}
@@ -86,8 +86,3 @@
 	{/if}
 </div>
 
-<style>
-	.number-svg {
-		display: inline-block;
-	}
-</style>
