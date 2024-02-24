@@ -35,4 +35,4 @@ jobs:
           file: Dockerfile.prod
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ghcr.io/malthael134/minesweeper-svelte:latest
+          tags: ghcr.io/malthael134/minesweeper:latest
